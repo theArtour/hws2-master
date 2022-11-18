@@ -6,6 +6,7 @@ display: flex;
 }
 
 .textarea {
+    flex: 2 1 300px;
     width: 946px!important;
     /*height: 40px!important;*/
     resize: none;
