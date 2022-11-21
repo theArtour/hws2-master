@@ -15,9 +15,10 @@ function Affair(props: AffairPropsType) {
         props.deleteAffairCallback(props.affair._id)
     }
 
-    const nameClass = s.name + ' ' + s2[props.affair.priority]
-    const buttonClass = s.closeButton + ' ' + s2[props.affair.priority]
-    const affairClass = s.affair + ' ' + s2[props.affair.priority]
+    const priorityClass = s.name + ' ' + s2[props.affair.priority]
+    const nameClass = s.name
+    const buttonClass = s.name + ' ' + s2.button
+    const affairClass = s2.affairs
 
     return (
         <div
@@ -29,9 +30,9 @@ function Affair(props: AffairPropsType) {
                 {props.affair.name}
                 {/**/}
             </div>
-            <div id={'hw2-priority-' + props.affair._id} hidden>
+            <div id={'hw2-priority-' + props.affair._id} className={priorityClass}>
                 {/*создаёт студент*/}
-
+                    {props.affair.priority}
                 {/**/}
             </div>
 
