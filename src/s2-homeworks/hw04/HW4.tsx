@@ -10,6 +10,17 @@ import Stand from './Stand'
 * */
 
 const HW4 = () => {
+    type UserType = {
+        [key:string]: { id: number, 'name': string }
+
+    }
+    const users:UserType = {
+        "101":{id:101,'name':'artour'},
+        "1001":{id:1001,'name':'grouv'},
+        "1011":{id:1011,'name':'misha'},
+    }
+    let user ={id:100500,name:'mikel'}
+    users[user.id] = user;
     return (
         <div id={'hw4'}>
             <div className={s2.hwTitle}>Homework #4</div>

@@ -19,6 +19,7 @@ type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
     onEnter?: () => void
     error?: ReactNode
     spanClassName?: string
+    errorClass?:() => void
 }
 
 const SuperInputText: React.FC<SuperInputTextPropsType> = (
@@ -31,28 +32,23 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         className,
         spanClassName,
         id,
+        errorClass,
 
         ...restProps // все остальные пропсы попадут в объект restProps
     }
 ) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange?.(e) // если есть пропс onChange, то передать ему е (поскольку onChange не обязателен)
-
         onChangeText?.(e.currentTarget.value)
     }
     const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
         onKeyPress?.(e)
 
-        onEnter && // если есть пропс onEnter
-        e.key === 'Enter' && // и если нажата кнопка Enter
-        onEnter() // то вызвать его
+        onEnter &&   e.key === 'Enter' &&   onEnter() // то вызвать его
     }
 
-    const finalSpanClassName = s.error
-        + (spanClassName ? ' ' + spanClassName : '')
-    const finalInputClassName = s.input
-        + (error ? ' ' + s.errorInput : ' ' + s.superInput)
-        + (className ? ' ' + s.className : '') // задача на смешивание классов
+    const finalSpanClassName = s.error + (spanClassName ? ' ' + spanClassName : '')
+    const finalInputClassName = s.input + (error ? ' ' + s.errorInput : ' ' + s.superInput) + (className ? ' ' + s.className : '') // задача на смешивание классов
 
     return (
         <div className={s.inputWrapper}>
